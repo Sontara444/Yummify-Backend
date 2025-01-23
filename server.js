@@ -5,6 +5,7 @@ import 'dotenv/config'
 
 import authRouter from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
+import userRouter from "./routes/userRoute.js";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.get("/", (req, res) => {res.send("working")})
   
 app.use('/api/auth', authRouter)
+app.use('/api/user', userRouter)
 
 
 

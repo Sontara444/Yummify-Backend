@@ -47,10 +47,10 @@ export const register = async (req, res) => {
 
 
 export const login = async (req, res) =>{
-    const {name, email, password} = req.body;
+    const {email, password} = req.body;
 
     if(!email || !password){
-        return res.json({success: false, message: "Missing Details"})
+        return res.json({success: false, message: "Email or Password is reuired"})
     }
 
     try {
@@ -101,4 +101,14 @@ export const logout = async (req, res) =>{
     } catch (error) {
         return res.json({success: false, message: error.message})
     }
+}
+
+export const isAuthenticated = async (req, res) =>{
+    try {
+        return res.json({success: true})
+        
+    } catch (error) {
+        res.json({success: false, message: error.message})
+    }
+
 }
