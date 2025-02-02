@@ -1,5 +1,6 @@
 import productModel from "../Models/productModel.js";
 
+
 export const addProduct = async (req, res) => {
 
   const { name, description, category, price ,available } = req.body;
@@ -30,30 +31,44 @@ export const addProduct = async (req, res) => {
 
     return res
       .status(201)
-      .json({ success: true, name, message: "New product added successfully" });
+      .json({ success: true, name, message: "Product added successfully" });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
+  
 };
 
 export const removeProduct = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const product = await productModel.findOneAndDelete({ id });
+    const product = await productModel.findOneAndDelete({ _id: id });
 
     if (!product) {
       return res.status(404).json({
         success: false,
-        message: `Product with ID ${id} not found`,
+        message: `Product not found`,
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: `Product with ID ${id} has been removed`,
+      message: `Product removed`,
     });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
 };
+
+
+export const getProduct = async (req, res) =>{
+  try {
+    const products = await productModel.find({})
+    
+
+    return res.status(200).json({ success: true, message: "All Products", products });
+    
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+}

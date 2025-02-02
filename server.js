@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 connectDB()
-const allowedOrigins = ['http://localhost:3000']
+const allowedOrigins = ['http://localhost:3000','http://localhost:5173' ]
 
 // Middleware
 app.use(cors({ origin: allowedOrigins, credentials: true}))
