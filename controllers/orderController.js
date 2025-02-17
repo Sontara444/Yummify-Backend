@@ -55,4 +55,10 @@ export const placeOrder = async (req, res) => {
     console.log(error)
     return res.json({ success: false, message: error.message });
   }
+
 };
+
+
+export const verifyOrder = async(req, res)=>{
+  const {orderId, success} = req.body;
+}
