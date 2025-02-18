@@ -61,4 +61,29 @@ export const placeOrder = async (req, res) => {
 
 export const verifyOrder = async(req, res)=>{
   const {orderId, success} = req.body;
+
+  try {
+    if(success === "true"){
+      await orderModel.findByIdAndUpdate(orderId, {payment:"true"})
+      res.json({success: true, message:"Paid"})
+    }
+    else{
+      await orderModel.findByIdAndDelete(orderId)
+      res.json({success:true, message:"Not Paid"})
+    }
+    
+  } catch (error) {
+    res.json({success:false, message: "Error"})
+  }
+}
+
+export const usersOrders = async(req, res)=>{
+  const {userId} = req.body;
+  try {
+    const orders = await orderModel.find({userId})
+    res.json({success:true, data:orders})
+    
+  } catch (error) {
+    res.json({success:false, message:"Error"})
+  }
 }
