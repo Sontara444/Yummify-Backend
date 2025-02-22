@@ -98,3 +98,17 @@ export const listOrders = async(req, res)=>{
     res.json({success:false, message:"Error"})
   }
 }
+
+
+// api  for updating orders status admin panel
+export const updateStatus = async(req, res)=>{
+  const {orderId, status} = req.body;
+  try {
+    await orderModel.findByIdAndUpdate(orderId,{status})
+    res.json({success:true, message:"Status Updated"})
+    
+  } catch (error) {
+    res.json({success:false, message:"Error"})
+  }
+
+}
