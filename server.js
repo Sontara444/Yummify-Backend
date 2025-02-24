@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 connectDB()
-const allowedOrigins = ['http://localhost:3000','http://localhost:5173' ]
+const allowedOrigins = ['https://yummify-frontend.onrender.com','https://yummify-admin.onrender.com' ]
 
 // Middleware
 app.use(cors({ origin: allowedOrigins, credentials: true}))
